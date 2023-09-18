@@ -15,6 +15,7 @@ function App() {
   const [allowedClaims, setAllowedClaims] = useState(null)
   const [rejectedClaims, setRejectedClaims] = useState(null)
   const [rejectionType, setRejectionType] = useState(null)
+  const [artUnit, setArtUnit] = useState(null)
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
@@ -61,6 +62,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setMailDate(data.response.docs[0].submissionDate.slice(0,10))
+        setArtUnit(data.response.docs[0].groupArtUnitNumber)
         setAllowedClaims(data.response.docs[0].claimNumberArrayDocument[0])
         console.log(data.response.docs[0].claimNumberArrayDocument[0]);
       })
@@ -118,6 +120,7 @@ function App() {
           <li>Allowed Claims: {allowedClaims}</li>
           <li>Rejected Claims: {rejectedClaims}</li>
           <li>Rejection Type: {rejectionType}</li>
+          <li>Art Unit: {artUnit}</li>
         </ul>
       )}
     </div>
